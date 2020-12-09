@@ -5,15 +5,39 @@
     <link>/project/</link>
     <description>Recent content in Projects on My Website</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <lastBuildDate>Tue, 01 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-US</language><atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Project 2</title>
+      <title>Project 1: Exploratory Data Analysis</title>
+      <link>/project/project1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/project/project1/</guid>
+      <description>Kapil Mangrolia
+EID: kvm386
+Introduction The NBA uses various statistics to analyze player&#39;s offensive and defensive performance. Using those statistics, predictions can be made on NBA players and how teams will perform in the future. However, what are the algorithms and statistics used to measure this? FiveThirtyEight is a wesbite with NBA data anaylyst that created the following two algorithms for this purpose: &amp;quot;RAPTOR&amp;quot; and &amp;quot;DRAYMOND&amp;quot;.
+RAPTOR is a robust algorithm that uses &amp;quot;player tracking&amp;quot; and &amp;quot;on-off&amp;quot; statistics to determine how a player effects their team&#39;s offensive and defensive performance.</description>
+    </item>
+    
+    <item>
+      <title>Project 2: Modeling, Testing, and Predicting</title>
       <link>/project/project2/</link>
-      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/project/project2/</guid>
-      <description> Test Project 2  </description>
+      <description>Kapil Mangrolia
+EID: kvm386
+Introduction The dataset is called &amp;quot;lakers&amp;quot; and is tidy and built into R. Lakers is a dataset that contains play by play statistics on the 2008-2009 Los Angeles Lakers. The 2008-2009 Los Angeles Lakers won an NBA Championship that year in a dominant and efficient manner. As a result, they are a great team to individually analyze. The dataset contains 34,624 rows and 13 columns. The data columns include the date, accronym of the opponent, and type of game (home/away game).</description>
+    </item>
+    
+    <item>
+      <title>Rod Pump Failure Data Analysis</title>
+      <link>/project/project3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/project/project3/</guid>
+      <description>Kapil Mangrolia
+EID: kvm386
+Introduction The dataset represents the rod pump failure in pumpjack systems. The dataset is from ConocoPhillips. It has various columns for characteristics of rod pumps and how they possibly failed such as sideload, inclination, start/end time, failure type, etc. The purpose of this project is to attempt to find hidden patterns on how/where the rod pumps are failing and then present the results. The first step in the analysis process is to clean the dataset.</description>
     </item>
     
   </channel>

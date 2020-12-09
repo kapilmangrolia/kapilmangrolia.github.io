@@ -6,7 +6,19 @@
     <description>Recent content in Posts on My Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 02 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog Post  - Python within R?</title>
+      <link>/post/2020/12/08/blog-post-python-within-r/</link>
+      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/12/08/blog-post-python-within-r/</guid>
+      <description>For my first blogpost, I will write about how you can actually write python code in R! The python and R code can communicate between each other by using the proper tag on the code chuncks and libraries.
+Both R and pyhton will knit interactively if the &amp;quot;reticulate&amp;quot; library is used. Additionally,
+Here is some example base R with the &amp;quot;Loblolly&amp;quot; datset below:
+plot(Loblolly$age,Loblolly$height) Now in Python, I will run a code that finds the deflection of a bicycle pedal made of ABS Plastic and PVC.</description>
+    </item>
+    
     <item>
       <title>test post</title>
       <link>/post/2020/12/02/test-post/</link>

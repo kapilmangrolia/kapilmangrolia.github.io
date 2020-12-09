@@ -1,75 +1,3 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Kapil Mangrolia" />
-    
-    <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
-    <title>Project 2: Modeling, Testing, and Predicting</title>
-    <meta name="generator" content="Hugo 0.79.0" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
-    
-    <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-    
-  </head>
-
-  <body>
-    <div id="wrap">
-      
-      <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="../../"><i class="fa fa-home"></i></a>
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="navbar-collapse collapse" id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-      
-        
-        <li><a href="../../post/">BLOG</a></li>
-        
-        <li><a href="../../projects/">PROJECTS</a></li>
-        
-        <li><a href="../../resume/">RESUME</a></li>
-        
-      
-      </ul>
-    </div>
-  </div>
-</nav>
-
-      <div class="container">
-        <div class="blog-post">
-          <h3>
-            <strong><a href="../../project/project2/">Project 2: Modeling, Testing, and Predicting</a></strong>
-          </h3>
-        </div>
- 
-<div class="blog-title">
-          <h4>
-         January 1, 0001 
-            &nbsp;&nbsp;
-            
-          </h4>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="blogpost">
-              
 
 
 <p>Kapil Mangrolia<br />
@@ -261,11 +189,11 @@ obs_F &lt;- (SSB_ob/12)/(SSW_ob/13054)  # k = columns -1 = 13 -1; df = rows - k 
 ggplot(Fs_df, aes(x = .)) + geom_histogram() + xlab(&quot;Fs&quot;) + ylab(&quot;Density&quot;) + 
     ggtitle(&quot;Histogram of F&#39;s&quot;) + geom_vline(xintercept = obs_F, 
     color = &quot;red&quot;) + theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="../../project/project2_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Project2-stats_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>mean(Fs &gt; obs_F)  #p-value</code></pre>
-<pre><code>## [1] 0.3668</code></pre>
+<pre><code>## [1] 0.3772</code></pre>
 <pre class="r"><code>mean(Fs)</code></pre>
-<pre><code>## [1] 2.330308</code></pre>
+<pre><code>## [1] 2.344022</code></pre>
 <p>The p-value of the F-test is 0.3716. That p-value isn't very small so as a result, the null hypothesis is accepted. Additionally, the mean of the randomized F-stat was 2.331. When the F-statistic is large, the null is rejected. However, our randomized F-stat was very small so that further affirms that the null hypothesis is accepeted.</p>
 </div>
 <div id="linear-regression-model" class="section level2">
@@ -307,7 +235,7 @@ summary(fit)</code></pre>
 <pre class="r"><code>ggplot(lakers, aes(y_c, x_c, color = game_type)) + geom_smooth(method = &quot;lm&quot;, 
     se = F, fullrange = T) + geom_point() + ggtitle(&quot;Linear Regression on Positions of Shots&quot;) + 
     theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="../../project/project2_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Project2-stats_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The assumptions of a linear regression are that at any point the data and it's residuals are normally distributed (normality), an even scatter (i.e. equal variance) of points as the regression line increses (homoskedasticity), and linear relationship between each X predictor and the response Y. Notice from the plot above,the trendline doesn't accuratly follow the data so the linear assumption between the predictors and response variable are rejected. The Breush-Pagan test below tests homoskedasticity.</p>
 <p>Check assumptions of linearity, normality, and homoskedasticity either graphically or using a hypothesis test (4)</p>
 <pre class="r"><code>bptest(fit)</code></pre>
@@ -373,7 +301,7 @@ ks.test(resids, &quot;pnorm&quot;, mean = 0, sd(resids))</code></pre>
 # estimated SE&#39;s using bootstrapping
 samp_distn %&gt;% t %&gt;% as.data.frame %&gt;% summarize_all(sd)</code></pre>
 <pre><code>##   (Intercept) game_typehome        y_c game_typehome:y_c
-## 1   0.1401605     0.1916847 0.01516912        0.02115723</code></pre>
+## 1    0.139221     0.1962636 0.01544212        0.02115751</code></pre>
 <p>With bootstrapped standard errors, the standard error for game_typehome increased while y_c and game_typehome:y_c SE's decresed.</p>
 <p>Bootstrapped standard errors: - game_typehome (SE) = 0.1962148 - y_c (SE) = 0.01513994 - game_typehome:y_c (SE) = 0.02087231</p>
 <p>The p-values probably didn't change immensely due to these slight vhanges in SE. It probably followed the same trends as before which were that the p-value for y_c and game_typehome:y_c decrease while the p value for game_typehome increase.</p>
@@ -425,12 +353,12 @@ lakers %&gt;% mutate(outcome = factor(result, levels = c(&quot;made&quot;,
     geom_vline(xintercept = 0, lty = 2) + ggtitle(&quot;Density Plot of Log-Odds&quot;) + 
     theme(plot.title = element_text(hjust = 0.5)) + xlim(-1, 
     1)</code></pre>
-<p><img src="../../project/project2_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Project2-stats_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice the large overlap between made and missed. The model is very innaccurate at predicting made and missed baskets.</p>
 <pre class="r"><code>ROCplot1 &lt;- ggplot(lakers) + geom_roc(aes(d = y_res, m = probs), 
     n.cuts = 0) + ggtitle(&quot;ROC Curve&quot;) + theme(plot.title = element_text(hjust = 0.5))
 ROCplot1</code></pre>
-<p><img src="../../project/project2_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Project2-stats_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>calc_auc(ROCplot1)</code></pre>
 <pre><code>##   PANEL group       AUC
 ## 1     1    -1 0.5936635</code></pre>
@@ -904,7 +832,7 @@ summarize_all(diags2, mean)</code></pre>
 ## [65] foreach_1.5.0     cellranger_1.1.0  gtable_0.3.0      assertthat_0.2.1 
 ## [69] xfun_0.16         openxlsx_4.1.5    broom_0.7.0       survival_3.2-3   
 ## [73] iterators_1.0.12  ellipsis_0.3.1</code></pre>
-<pre><code>## [1] &quot;2020-12-09 00:02:54 CST&quot;</code></pre>
+<pre><code>## [1] &quot;2020-12-08 23:53:57 CST&quot;</code></pre>
 <pre><code>##                                       sysname 
 ##                                       &quot;Linux&quot; 
 ##                                       release 
@@ -922,59 +850,3 @@ summarize_all(diags2, mean)</code></pre>
 ##                                effective_user 
 ##                                      &quot;kvm386&quot;</code></pre>
 </div>
-
-            
-        <hr>         <div class="related-posts">
-                <h5>Related Posts</h5>
-                
-              </div> 
-            </div>
-          </div>
-
-   <hr>  <div class="disqus">
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-
-    (function() {
-      
-      
-      if (window.location.hostname == "localhost")
-        return;
-
-      var disqus_shortname = '';
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div> 
-        </div>
-      </div>
-    </div>
-
-    
-    <footer>
-  <div id="footer">
-    <div class="container">
-      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
-      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
-    </div>
-  </div>
-</footer>
-<div class="footer"></div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="../../js/docs.min.js"></script>
-<script src="../../js/main.js"></script>
-
-<script src="../../js/ie10-viewport-bug-workaround.js"></script>
-
-
-    
-  </body>
-</html>

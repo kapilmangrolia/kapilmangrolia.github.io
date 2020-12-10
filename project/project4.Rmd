@@ -177,13 +177,6 @@ ggplotly(empty_list[[3]]) %>% layout(legend = list(orientation = "h", x = 0.2, y
 ggplotly(empty_list[[13]]) %>% layout(legend = list(orientation = "h", x = 0.2, y = -0.2))
 ```
 
-### Multinomial Logistical Regression: Density Plot 
-
-```{r,warning=FALSE}
-ggplotly(ggplot(data2, aes(logit, fill=outcome))+geom_density(alpha=.3,) +
-  geom_vline(xintercept=0,lty=2))
-```
-
 # PAM Clustering
 
 ### PAM Cluster: 2 x 2 
@@ -208,10 +201,10 @@ ggplotly(ggpairs(pamclust5,columns=1:4 ,aes(color=as.factor(rodPumpScale$Failure
          
 ```
 
-### 5 x 5
+### Multinomial Logistical Regression: Density Plot 
 
 ```{r,warning=FALSE}
-
-ggplotly(ggpairs(pamclust5,columns=1:5 ,aes(color=as.factor(rodPumpScale$Failure_Type))))
-     
+ggplotly(ggplot(data2, aes(logit, fill=outcome))+geom_density(alpha=.3,) +
+  geom_vline(xintercept=0,lty=2))
 ```
+

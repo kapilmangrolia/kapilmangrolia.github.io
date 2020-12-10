@@ -82,7 +82,7 @@ Hook Em'!
 
 ![](/post/2020-12-08-blog-post-python-within-r_files/deflection2.png)
 
-If your curious, here is the SolidWorks CAD for the DIY home exercise peddling machine. It's designed so that during the pandemic, people can pedal while working from their desk. The mechanism at the top allows for the user to change the resistance on the internal pulleys and belts so the user can get a more intense workout if they want. 
+If your curious, here is the SolidWorks CAD for the DIY home exercise peddling machine. It's designed so that during the pandemic, people can pedal while working from their desk. The position of the wooden dowel on the top mechanism allows for the user to change the tension on the internal pulleys and belts, which allow the user to apply more resistance and get a more intense workout if they want. It's made completly from wood, PVC, and ABS plastic. It also has an Arduino that keeps track of exercise statistics (speed, distance, calories burned, and battery life) and an "Arduino Shield" that allows for these statistics to be displayed wirelessly on a smartphone device. It costs under $120 dollars, all supplies can be found at Amazon/hardware store, and it can be completly made from home. 
 
 ![](/post/2020-12-02-test-post_files/cycle1.png)
 

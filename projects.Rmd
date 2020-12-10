@@ -15,6 +15,9 @@ Check out some of my coding projects below:
 
 <i class="fa fa-line-chart"></i> &nbsp; [Machine Learning: ConocoPhillips Rod Pumps' ](/project/project3/)
 
+<i class="fa fa-line-chart"></i> &nbsp; [Rod Pump Failure: Interactive Plots](/project/project4/)
+
+
 <!--
 <i class="fa fa-pie-chart"></i> 
 <i class="fa fa-tasks"></i> 

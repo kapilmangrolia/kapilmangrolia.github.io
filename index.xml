@@ -21,7 +21,7 @@ plot(Loblolly$age,Loblolly$height) Now in Python, I will run a code that finds t
     <item>
       <title>ConocoPhillips Rod Pump Failure Dashboard</title>
       <link>/project/project4/</link>
-      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>/project/project4/</guid>
       <description>Using ggplotly, here are the interactive machine learning results from the &amp;quot;Machine Learning: ConocoPhillips Rod Pumps&#39;&amp;quot; project. Read the project for interpretation of these results. Initially, this was a dashboard made with &amp;quot;flexdashboard&amp;quot;. I wasn&#39;t able to display the dashboard, so I put the interative plots here instead. If you want to see a copy of that dashboard, email me.
@@ -31,7 +31,7 @@ Everything is interactive! Make sure to click on the legends and different group
     <item>
       <title>Rod Pump Failure Data Analysis</title>
       <link>/project/project3/</link>
-      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>/project/project3/</guid>
       <description>Kapil Mangrolia

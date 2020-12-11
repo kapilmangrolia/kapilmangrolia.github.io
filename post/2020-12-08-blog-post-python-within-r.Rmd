@@ -10,8 +10,6 @@ description: ''
 
 For my first blogpost, I will write about how you can actually write python code in R! The python and R code can communicate between each other by using the proper tag on the code chuncks and libraries.   
 
-Both R and pyhton will knit interactively if the "reticulate" library is used. Additionally, 
-
 Here is some example base R with the "Loblolly" datset below: 
 
 ```{r}

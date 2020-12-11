@@ -60,7 +60,7 @@
  
 <div class="blog-title">
           <h4>
-         January 1, 0001 
+         November 25, 2020 
             &nbsp;&nbsp;
             
           </h4>
@@ -263,9 +263,9 @@ ggplot(Fs_df, aes(x = .)) + geom_histogram() + xlab(&quot;Fs&quot;) + ylab(&quot
     color = &quot;red&quot;) + theme(plot.title = element_text(hjust = 0.5))</code></pre>
 <p><img src="../../project/project2_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>mean(Fs &gt; obs_F)  #p-value</code></pre>
-<pre><code>## [1] 0.3668</code></pre>
+<pre><code>## [1] 0.3816</code></pre>
 <pre class="r"><code>mean(Fs)</code></pre>
-<pre><code>## [1] 2.330308</code></pre>
+<pre><code>## [1] 2.34512</code></pre>
 <p>The p-value of the F-test is 0.3716. That p-value isn't very small so as a result, the null hypothesis is accepted. Additionally, the mean of the randomized F-stat was 2.331. When the F-statistic is large, the null is rejected. However, our randomized F-stat was very small so that further affirms that the null hypothesis is accepeted.</p>
 </div>
 <div id="linear-regression-model" class="section level2">
@@ -373,7 +373,7 @@ ks.test(resids, &quot;pnorm&quot;, mean = 0, sd(resids))</code></pre>
 # estimated SE&#39;s using bootstrapping
 samp_distn %&gt;% t %&gt;% as.data.frame %&gt;% summarize_all(sd)</code></pre>
 <pre><code>##   (Intercept) game_typehome        y_c game_typehome:y_c
-## 1   0.1401605     0.1916847 0.01516912        0.02115723</code></pre>
+## 1   0.1403816     0.1950594 0.01512461        0.02129525</code></pre>
 <p>With bootstrapped standard errors, the standard error for game_typehome increased while y_c and game_typehome:y_c SE's decresed.</p>
 <p>Bootstrapped standard errors: - game_typehome (SE) = 0.1962148 - y_c (SE) = 0.01513994 - game_typehome:y_c (SE) = 0.02087231</p>
 <p>The p-values probably didn't change immensely due to these slight vhanges in SE. It probably followed the same trends as before which were that the p-value for y_c and game_typehome:y_c decrease while the p value for game_typehome increase.</p>
@@ -904,7 +904,7 @@ summarize_all(diags2, mean)</code></pre>
 ## [65] foreach_1.5.0     cellranger_1.1.0  gtable_0.3.0      assertthat_0.2.1 
 ## [69] xfun_0.16         openxlsx_4.1.5    broom_0.7.0       survival_3.2-3   
 ## [73] iterators_1.0.12  ellipsis_0.3.1</code></pre>
-<pre><code>## [1] &quot;2020-12-09 00:02:54 CST&quot;</code></pre>
+<pre><code>## [1] &quot;2020-12-10 23:03:11 CST&quot;</code></pre>
 <pre><code>##                                       sysname 
 ##                                       &quot;Linux&quot; 
 ##                                       release 

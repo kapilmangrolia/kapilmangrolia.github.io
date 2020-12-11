@@ -60,7 +60,7 @@
  
 <div class="blog-title">
           <h4>
-         January 1, 0001 
+         December 8, 2020 
             &nbsp;&nbsp;
             
           </h4>
@@ -220,10 +220,11 @@ descriptives_sucker_rod_pump &lt;- describeBy(x = sucker_rod_pump)</code></pre>
 <pre class="r"><code>ggplot(sucker_rod_pump, aes(Pump_Fillage)) + geom_histogram(bins = 60) + 
     theme(plot.title = element_text(hjust = 0.5)) + ggtitle(&quot;Sucker Rod Pump Fillage Histogram&quot;)</code></pre>
 <p><img src="../../project/project3_files/figure-html/unnamed-chunk-12-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Here is the lifespan spread of every rodpump in the cleaned dataset.</p>
 <pre class="r"><code>ggplot(rodPump, aes(x = seq(1, length(Lifespan_Days)), y = Lifespan_Days)) + 
     geom_point(aes(color = Failure_Type)) + theme(plot.title = element_text(hjust = 0.5)) + 
     ggtitle(&quot;Lifespan of Rod Pump Systems&quot;)</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-12-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="correlation-heat-map" class="section level1">
@@ -237,7 +238,7 @@ cormat %&gt;% rownames_to_column(&quot;var1&quot;) %&gt;% pivot_longer(-1,&#39;v
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) + #flips the x-axis labels
   coord_fixed() +ggtitle(&quot;Correlation Heat Map&quot;)+ theme(plot.title = element_text(hjust = 0.5),axis.text.x=element_text(angle=45,hjust=1)) + xlab(&quot;&quot;) +
   ylab(&quot;&quot;)</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="machine-learning-clustering-methods-pam" class="section level1">
 <h1>Machine Learning: Clustering Methods: PAM</h1>
@@ -260,7 +261,7 @@ for (i in 2:15) {
 ggplot() + geom_line(aes(x = 1:15, y = sil_width4)) + scale_x_continuous(name = &quot;k&quot;, 
     breaks = 1:15) + ggtitle(&quot;Silhouette Width by Number of Clusters&quot;) + 
     theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>By the plot above, it seems that 3 clusters should be chosen for this data because the highest point in the plot is at k = 3. Now, PAM clustering can be performed and the results can be plotted.</p>
 <pre class="r"><code>pam_3 &lt;- pam_dat4 %&gt;% pam(3)  #perform PAM
 
@@ -270,12 +271,12 @@ pamclust4 &lt;- pam_dat4 %&gt;% mutate(cluster = as.factor(pam_3$clustering))
 pamclust4 %&gt;% ggplot(aes(Primary_Setpoint, Secondary_Setpoint, 
     color = cluster)) + geom_point() + ggtitle(&quot;PAM Clustering Plot&quot;) + 
     theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The plot above is a result of PAM clustering. The plot clusters Primary SetPoint and Secondary Setpoint. It seems that there isn't a large distance between the clusters and there isn't small distance within the clusters either. As a result, this data cluster doesn't have much to offer. However, I want to see all possible clusters! If I want to see all possible cluster combinations as plots, I can use ggpairs().With ggpairs(), I can color the points by Failure_Type and see if the unsupervised machine learning model was able to group them on its own .</p>
 <pre class="r"><code>library(GGally)
 pamclust4 &lt;- pamclust4 %&gt;% mutate_all(as.numeric)
 ggpairs(pamclust4, columns = 1:4, aes(color = as.factor(rodPumpScale$Failure_Type)))</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>pam_3$silinfo$avg.width</code></pre>
 <pre><code>## [1] 0.1246829</code></pre>
 <p>The average silhouette width is 0.125. According to the goodness of fit criteria, this means &quot;no substantial structure has been found&quot;. This means that with PAM clustering method, there probably isn't a hidden pattern or group within the data. However, this isn't necessairly a bad thing! Does this indicate that the individual means of each column are different from each other? Possibly, but are they statistically different and significant from each other? We can determine that by using ANOVA and hypothesis test simulations. There is one thing we are forgetting. We didn't use the categorical variables in the PAM clustering. Usually clustering methods only allow numerics, but using what's known as the &quot;Gower Dissimilarity&quot;. The Gower allows you to be able to tell how similar the categorical variables are to each other and to the numerical variables. PAM clustering with the Gower dissimilarity follows the same algorithm: scale numerical values, find the amount of clusters with the silloutte width, perform PAM and notice trends with an entire matrix of plots with ggpairs().</p>
@@ -293,7 +294,7 @@ for (i in 2:15) {
     pam_fit5 &lt;- pam(gower1, diss = TRUE, k = i)
     sil_width5[i] &lt;- pam_fit5$silinfo$avg.width
 }</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>By the plot above, it seems that 3 clusters should be chosen for this data because the highest point in the plot is at k = 3. Now, PAM clustering can be performed and the results can be plotted.</p>
 <pre class="r"><code>pam10 &lt;- pam(gower1, k = 3, diss = T)  #tell pam you are using dissimilarities</code></pre>
 <p>The Gower can tell you statistics with categoricals such as the following, &quot;Which 2 rod pumps are the most 'similar' and 'different' according to the Gower?&quot; It uses euclidean distance between and within groups.</p>
@@ -312,7 +313,7 @@ for (i in 2:15) {
 pamclust5 &lt;- pamclust5 %&gt;% mutate_all(as.numeric)
 
 ggpairs(pamclust5, columns = 1:3, aes(color = as.factor(rodPumpScale$Failure_Type)))</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>pam10$silinfo$avg.width</code></pre>
 <pre><code>## [1] 0.174394</code></pre>
 <p>Colored the cluster by failure type and attempted to see if the cluster grouped and separated by themselves into failure type. It seems that most of the variables aren’t clustering into their failure types automatically. Notice, the plots involving the categorical variables. The Gower Dissimilarity allows for categoricals to be placed in a PAM model by “dummy” coding 0,1,,etc. for each category within the variable. However, that was a 4 x 4 matrix of plots and we have 30 variables. Cannot plot a 30 x 30 matrix that is legible. Instead, we use the silhouette width criteria. The average silhouette width is 0.174. According to the goodness of fit criteria, this means &quot;no substantial structure has been found&quot;. This means that with PAM clustering method, there probably isn't a hidden pattern or group within the data. However, as previously said, this isn't necessairly a bad thing. It indicates the the variables are different from each other and possibly a different method can find a pattern.</p>
@@ -357,14 +358,14 @@ ggplot(Rod_PC, aes(PC1, PC2)) + geom_point(aes(color = Failure_Type)) +
     -5, ], aes(PC1, PC2), color = &quot;blue&quot;) + stat_ellipse(data = Rod_PC[Rod_PC$PC2 &gt; 
     4.1, ], aes(PC1, PC2), color = &quot;red&quot;) + stat_ellipse(data = Rod_PC[Rod_PC$PC2 &lt; 
     -4.7, ], aes(PC1, PC2), color = &quot;red&quot;)</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Notice how the Rod Pumps were high in PCA 1 and PCA 2, the failure was in the tubing, while if they were low in PCA 1 and PCA 2, the failure was in the sucker rod. What variables make up those PC’s?</p>
 <pre class="r"><code>PCA$loadings[1:7, 1:2] %&gt;% as.data.frame %&gt;% rownames_to_column %&gt;% 
     ggplot() + geom_hline(aes(yintercept = 0), lty = 2) + geom_vline(aes(xintercept = 0), 
     lty = 2) + ylab(&quot;PC2&quot;) + xlab(&quot;PC1&quot;) + geom_segment(aes(x = 0, 
     y = 0, xend = Comp.1, yend = Comp.2), arrow = arrow(), col = &quot;red&quot;) + 
     geom_label(aes(x = Comp.1 * 1.1, y = Comp.2 * 1.1, label = rowname))</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Those 7 variables all positively contribute to PC1 and PC2. Secondary Setpoint and max_unguided DLS negatively contribute to PC2. The angles between vectors will tell the correlation between categories within a PC. The closer the vectors, the greater their correlation is within the PC’s.<br />
 Angle &lt; 90 = Positive correlation between categories<br />
 Angle &gt; 90 = Negative correlation between categories<br />
@@ -388,9 +389,9 @@ for (i in 1:8) {
     }
 }
 empty_list[[1]]</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>empty_list[[3]]</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-30-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-31-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The PCA Biplot loops returns every relevent plot for the combinations of PCA's, automatically groups the points by failure type with colored ellipses, and displays the loading vectors. The loop returned 28 plots. However, the first few PC's explain the most variabilty, which is shown as a percentage on the x and y axis. As a result, PC1 by PC2 Biplot explains the most variabilty as a combination. PC1 explains 19.6% variabilty and PC2 explains 11.2% variability.</p>
 <p>From the PC1 by PC2 biplot, if the data is negative in PC1 but positive in PC2, Avg_water_SG is driving the sucker rod failure. Additionally, if the data is negative in both PC's, then Lifespan_days is driving the sucker rod failures. Lifespan and Avg_Water_SG are potential causes/indicators of sucker rod failure. While it seems that if your positive in both PC's, Avg_Pressure_Casing, Avg_Pressure_Tubing, Avg_Oil_Volume, Avg_Water_Volume, Avg_Pressure_Flowline, Pump_Bore, and Stroke_Length have the longest vectors that are contributing to Tubing failure. If your positive in PC1 but negative in PC2, Rods failure is likely with Max_Unguided_DLS, DLS_High_in_Hole, Max_Sideload.</p>
 <p>Usually, the first few plots are the most useful because the first few PC's have the largest variability. Plot 1 and Plot 3 have the most useful information. Their trends repeat in other plots or some plots are difficult to see any noticeable correlation. In Plot 3, Lifespan and Water_SG contribute to Sucker Rod Pump failure. Nipple_Set_Depth, Route, and Yesterday_Avg_SPM contribute to Rods failure.</p>
@@ -551,7 +552,7 @@ fail_preds1 &lt;- scale(fail_preds1)
 cv &lt;- cv.glmnet(fail_preds1, y1, family = &quot;multinomial&quot;, type.multinomial = &quot;grouped&quot;, 
     parallel = TRUE)
 plot(cv)</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The plot above shows the multinomial deviance by the log base 10 of lambda. The best lambda maximizes the 10 fold cross-validation that will occur next. It is slightly subjective in which position is the &quot;best&quot; lambda. Most data engineers agree that either the global minimum of the curve above or 1 standard error above that minimum is the ideal position for lambda. I will use the minimum of the curve above as the lambda value.</p>
 <pre class="r"><code>lasso_fit1 &lt;- glmnet(fail_preds1, y1, family = &quot;multinomial&quot;, 
     lambda = cv$lambda.min)
@@ -897,7 +898,7 @@ data2 &lt;- data2 %&gt;% mutate(outcome = factor(Failure_Type, levels = c(&quot;
 
 ggplot(data2, aes(logit, fill = outcome)) + geom_density(alpha = 0.3, 
     ) + geom_vline(xintercept = 0, lty = 2)</code></pre>
-<p><img src="../../project/project3_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="../../project/project3_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 
             

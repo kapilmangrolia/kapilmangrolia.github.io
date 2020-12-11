@@ -1,7 +1,7 @@
 ---
 title: 'Rod Pump Failure Data Analysis'
 author: "NSC325 - Fall 2020"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
+date: '2020-12-08'
 output:
   html_document:
     toc: yes
@@ -158,11 +158,15 @@ ggplot(sucker_rod_pump, aes(Pump_Fillage)) + geom_histogram(bins =60) +
   theme(plot.title = element_text(hjust = 0.5)) +
           ggtitle("Sucker Rod Pump Fillage Histogram")
 
+```
+
+Here is the lifespan spread of every rodpump in the cleaned dataset. 
+
+```{r}
 ggplot(rodPump, aes(x = seq(1,length(Lifespan_Days)),y=Lifespan_Days)) + 
   geom_point(aes(color=Failure_Type)) + 
   theme(plot.title = element_text(hjust = 0.5)) +
           ggtitle("Lifespan of Rod Pump Systems")
-
 ```
 
 # Correlation Heat Map
